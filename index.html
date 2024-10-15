@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Dashboard</title>
+  
+</head>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000000;
+  }
+  
+  .dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .card {
+    margin-top: 25%;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+  
+  .card p {
+    font-size: 24px;
+    color: #16a085;
+  }
+  
+   
+</style>
+<body>
+ 
+      <div class="dashboard-cards">
+        <div class="card">
+          <h3>Shopping</h3>
+          <a href="shopping website/shopping main.html"><img src="https://img.freepik.com/premium-photo/person-is-holding-bunch-shopping-bags-with-one-them-being-pink-bag_1260445-3197.jpg" height="150px" width="300px"></a>
+        </div>
+        <div class="card">
+          <h3>Banking</h3>
+          <a href="bank website/loging page.html"><img src="https://images.shiksha.com/mediadata/shikshaOnline/mailers/2021/naukri-learning/oct/27oct/What-is-Consumer-Banking.jpg" height="150px" width="300px"></a>
+        </div>
+        <div class="card">
+          <h3>API Calling</h3>
+          <a href="API/fectching.html"><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1688668593868/a7e28372-8336-4d74-9545-21e8f9de27fe.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp" height="150px" width="300px"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

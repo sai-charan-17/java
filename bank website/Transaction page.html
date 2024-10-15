@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Transactions</title>
+    <link rel="stylesheet" href="Transaction page.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Transaction History</h1>
+        <label for="filter">Filter by Type:</label>
+        <select id="filter" onchange="filterTransactions()">
+            <option value="all">All</option>
+            <option value="credit">Credit</option>
+            <option value="debit">Debit</option>
+        </select>
+        <table id="transactionTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-type="credit">
+                    <td>2024-09-01</td>
+                    <td>Deposit</td>
+                    <td>$1,000.00</td>
+                    <td class="credit">Credit</td>
+                </tr>
+                <tr data-type="debit">
+                    <td>2024-09-05</td>
+                    <td>ATM Withdrawal</td>
+                    <td>$200.00</td>
+                    <td class="debit">Debit</td>
+                </tr>
+                <tr data-type="debit">
+                    <td>2024-09-10</td>
+                    <td>Online Purchase</td>
+                    <td>$75.50</td>
+                    <td class="debit">Debit</td>
+                </tr>
+                <tr data-type="credit">
+                    <td>2024-09-15</td>
+                    <td>Interest Payment</td>
+                    <td>$5.25</td>
+                    <td class="credit">Credit</td>
+                </tr>
+                <tr data-type="debit">
+                    <td>2024-09-20</td>
+                    <td>Monthly Subscription</td>
+                    <td>$9.99</td>
+                    <td class="debit">Debit</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

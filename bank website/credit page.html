@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit/Debit Card Payment</title>
+    <link rel="stylesheet" href="credit page.css">
+</head>
+<body>
+    <h1 class="avl">Avaible balance:<span id="avl"></span></h1>
+    <div class="boxs">
+    <div class="container">
+        <h1>Credit Payment</h1>
+            <div class="form-group">
+                <label for="cardholder-name">Cardholder Name</label>
+                <input type="text" id="cardholder-name" name="cardholder-name" >
+            </div>
+            <div class="form-group">
+                <label for="credit-amount">Credit Amount</label>
+                <input type="number" id="credit-amount" name="credit-amount" >
+            </div>
+            
+            <button type="submit" id="credit">Submit Payment</button>
+      
+    </div>
+
+
+
+    <div class="container">
+        <h1>Debit Payment</h1>
+        
+            <div class="form-group">
+                <label for="cardholder-name">Cardholder Name</label>
+                <input type="text" id="cardholder-name" name="cardholder-name" required>
+            </div>
+            <div class="form-group">
+                <label for="debit-amount">Debit Amount</label>
+                <input type="number" id="debit-amount" name="debit-amount" >
+            </div>
+            
+            <button type="submit" id="debit">Submit Payment</button>
+        
+    </div>
+    </div>
+    
+
+    <script>
+     
+     let balance = 0;
+        document.getElementById("avl").innerHTML = balance;
+
+        // Credit event listener
+        document.getElementById("credit").addEventListener("click", function() {
+            let creditAmount = parseInt(document.getElementById("credit-amount").value);
+            
+            if (creditAmount > 0) {
+                balance += creditAmount;
+                document.getElementById("avl").innerHTML = balance;
+            } else {
+                alert("Please enter a valid credit amount.");
+            }
+        });
+
+        // Debit event listener
+        document.getElementById("debit").addEventListener("click", function() {
+            let debitAmount = parseInt(document.getElementById("debit-amount").value);
+            
+            if (debitAmount > 0 && debitAmount <= balance) {
+                balance -= debitAmount;
+                document.getElementById("avl").innerHTML = balance;
+            } else if (debitAmount > balance) {
+                alert("Insufficient balance for this debit amount.");
+            } else {
+                alert("Please enter a valid debit amount.");
+            }
+        });
+    </script>
+</body>
+</html>
