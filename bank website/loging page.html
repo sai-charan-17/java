@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #35383a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            transition: transform 0.3s;
+            align-items: center;
+        }
+
+        .login-container:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #000000;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        p {
+            text-align: center;
+            color: #6c757d;
+        }
+
+        p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h2>Welcome BankSmart!</h2>
+        <form id="loginForm" action="S/login" method="POST">
+            <div class="form-group">
+                <label for="username">Username: sai charan</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password: 101417</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+            <button type="submit" id="direct">Login</button>
+            <p class="error-message" id="error-message"></p>
+        </form>
+        <p>Don't have an account? <a href="/register">Register here</a>.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loginForm = document.getElementById("loginForm");
+            const errorMessage = document.getElementById("error-message");
+
+            loginForm.addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent default action
+
+                const urs = document.getElementById("username").value.trim();
+                const pss = document.getElementById("password").value.trim();
+
+                // Hardcoded credentials (should ideally be validated on the server)
+                const username = "sai charan";
+                const password = "101417"; // Ensure both are strings
+
+                console.log("Entered Username:", urs);
+                console.log("Entered Password:", pss);
+
+                if (!urs || !pss) {
+                    errorMessage.textContent = "Please enter both username and password."; // Display error
+                } else if (urs === username && pss === password) {
+                    alert("Login successful!");
+                    window.location.href = "landing.html"; // Ensure this path is correct
+                } else {
+                    errorMessage.textContent = "Invalid username or password."; // Display error
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        
+        #calling {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; 
+        }
+
+        .main {
+            
+            background-color: wheat;
+            padding: 10px; 
+            margin: 3px;
+            width: calc(33.333% - 20px); 
+            box-sizing: border-box; 
+            color: rgb(0, 0, 0); 
+            border-radius: 15px;
+            height: 400px;
+            width: 290px;
+        }
+
+        img {
+            max-width: 100%; 
+            height: 200px; 
+            display: flex;
+           
+            
+            
+
+        }
+
+        
+        @media (max-width: 768px) {
+            .main {
+                width: calc(50% - 20px); 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main {
+                width: 100%; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div id="calling"></div> 
+    </div>
+
+    <script>
+        let call = document.getElementById('calling');
+
+        async function getdata() {
+            try {
+                const response = await fetch('https://dummyjson.com/products'); 
+                if (!response.ok) { 
+                    throw new Error('Network response was not ok');
+                }
+                let data = await response.json();
+                console.log(data);
+                let adata = data.products; 
+
+                const myfun = adata.map(a => {
+                    return (
+                        `<div class="main">
+                            <h2>${a.title}</h2>
+                            <img src="${a.images[0]}" alt="${a.title}"> <!-- Accessing the first image -->
+                            <h2>${a.price}</h2>
+                            <button> Add Cart </button>
+                    
+                        </div>`
+                    )
+                }).join(''); 
+
+                call.innerHTML = myfun;
+            } catch (error) {
+                console.error('Fetch error: ', error); 
+                call.innerHTML = '<p>Error loading products. Please try again later.</p>'; 
+            }
+        }
+
+        getdata(); 
+    </script>
+</body>
+</html>

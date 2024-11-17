@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .continue-shopping:hover {
+            background-color: #45a049;
+        }
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .cart-items {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .cart-items li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+        .cart-items li:hover {
+            background-color: #f9f9f9;
+        }
+        .cart-items li:last-child {
+            border-bottom: none;
+        }
+        .cart-total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: right;
+        }
+        .empty-cart {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+        }
+        .clear-cart {
+            display: block;
+            background-color: #ff4c4c;
+            color: white;
+            padding: 12px 20px;
+            margin: 20px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        .clear-cart:hover {
+            background-color: #e60000;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart</h1>
+        <a href="womens wear.html" class="continue-shopping">Continue Shopping</a>
+    </header>
+
+    <main>
+        <ul class="cart-items" id="cartItems"></ul>
+        <p class="cart-total">Total: ₹ <span id="totalPrice">0</span></p>
+        <button class="clear-cart" id="clearCart">Clear Cart</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 One Click to Shop. All rights reserved.</p>
+        <p><b>Made by,<i> BANISETTI SAI CHARAN</i></b> - UI/UX Developer.</p>
+    </footer>
+
+    <script>
+        // Retrieve cart from localStorage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Elements for cart display
+        const cartItems = document.getElementById('cartItems');
+        const totalPriceElement = document.getElementById('totalPrice');
+        let totalPrice = 0;
+
+        // Check if cart is empty
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<li class="empty-cart">Your cart is empty</li>';
+        } else {
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - ₹ ${item.price}`;
+                cartItems.appendChild(li);
+
+                // Calculate total price
+                totalPrice += item.price;
+            });
+
+            // Display total price
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+        }
+
+        // Clear cart functionality
+        document.getElementById('clearCart').addEventListener('click', function () {
+            localStorage.removeItem('cart'); // Clear the cart from localStorage
+            cartItems.innerHTML = '<li class="empty-cart">Your cart is empty</li>';
+            totalPriceElement.textContent = '0';
+            updateCartCount(); // Optional: update cart count in navbar
+        });
+
+        // Update cart count in navbar (if needed)
+        function updateCartCount() {
+            const cartCount = cart.length;
+            document.querySelector('.cart').innerText = `🛒 Cart (${cartCount})`;
+        }
+
+        updateCartCount();
+    </script>
+</body>
+</html>

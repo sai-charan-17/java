@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mens wear.css">
+    <title>Unique Shopping App</title>
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="https://i.pinimg.com/736x/d6/39/07/d6390726609aa16dddbb604a7d5afe19.jpg" height="40px" width="50px">
+            One Click to Shop
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="mens cart.html" class="cart">🛒 Cart (0)</a></li> 
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" placeholder="Search products...">
+            <button class="search-button">🔍</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="filter">
+            <input type="number" id="minPrice" placeholder="Min Price"> 
+            <input type="number" id="maxPrice" placeholder="Max Price"> 
+            <input type="submit" id="filterButton" value="Filter">
+        </div>
+        
+        <section class="product-grid">
+            <article class="product">
+                <img src="images men/download1.jfif" alt="Product 1">
+                <h3>Product 1</h3>
+                <p>₹ 1200</p>
+                <button class="add-to-cart" data-name="product-1">Add to Cart</button>
+            </article>
+            <article class="product">
+                <img src="images men/download2.jfif" alt="Product 2">
+                <h3>Product 2</h3>
+                <p>₹ 800</p>
+                <button class="add-to-cart" data-name="product-2">Add to Cart</button>
+            </article>
+            <article class="product">
+                <img src="images men/download3.jfif" alt="Product 3">
+                <h3>Product 3</h3>
+                <p>₹ 750</p>
+                <button class="add-to-cart" data-name="product-3">Add to Cart</button>
+            </article>
+            <article class="product">
+                <img src="images men/download4.jfif" alt="Product 4">
+                <h3>Product 4</h3>
+                <p>₹ 300</p>
+                <button class="add-to-cart" data-name="product-4">Add to Cart</button>
+            </article>
+            <article class="product">
+                <img src="images men/download5.jfif" alt="Product 5">
+                <h3>Product 5</h3>
+                <p>₹ 250</p>
+                <button class="add-to-cart" data-name="product-5">Add to Cart</button>
+            </article>
+            <article class="product">
+                <img src="images men/download6.jfif" alt="Product 6">
+                <h3>Product 6</h3>
+                <p>₹ 1500</p>
+                <button class="add-to-cart" data-name="product-6">Add to Cart</button>
+            </article>
+            <article class="product">
+                <img src="images men/download7.jfif" alt="Product 7">
+                <h3>Product 7</h3>
+                <p>₹ 1250</p>
+                <button class="add-to-cart" data-name="product-7">Add to Cart</button>
+            </article>
+            <article class="product">
+                <img src="images men/download8.jfif" alt="Product 8">
+                <h3>Product 8</h3>
+                <p>₹ 850</p>
+                <button class="add-to-cart" data-name="product-8">Add to Cart</button>
+            </article>
+            <article class="product">
+                <img src="images men/images9.jfif" alt="Product 9">
+                <h3>Product 9</h3>
+                <p>₹ 900</p>
+                <button class="add-to-cart" data-name="product-9">Add to Cart</button>
+            </article>
+            <article class="product">
+                <img src="images men/images10.jfif" alt="Product 10">
+                <h3>Product 10</h3>
+                <p>₹ 1800</p>
+                <button class="add-to-cart" data-name="product-10">Add to Cart</button>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <img src="https://i.pinimg.com/736x/d6/39/07/d6390726609aa16dddbb604a7d5afe19.jpg" height="80px" width="90px">
+            <br>
+            <br>
+        <p>&copy; 2024 One Click to Shop. All rights reserved.</p>
+        <p><b>Made by,<i> BANISETTI SAI CHARAN</i></b> - UI/UX Developer.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('filterButton').addEventListener('click', function () {
+            const minPrice = parseInt(document.getElementById('minPrice').value) || 0;
+            const maxPrice = parseInt(document.getElementById('maxPrice').value) || Infinity;
+
+            const products = document.querySelectorAll('.product');
+
+            products.forEach(product => {
+                const price = parseInt(product.querySelector('p').innerText.replace('₹', '').replace(',', '').trim());
+                if (price >= minPrice && price <= maxPrice) {
+                    product.style.display = ''; // Show product
+                } else {
+                    product.style.display = 'none'; // Hide product
+                }
+            });
+        });
+
+        // Initialize cart from localStorage or set an empty array
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function () {
+                const productName = this.dataset.name;
+                const productPrice = this.previousElementSibling.innerText.replace('₹', '').trim(); // Get price
+                
+                // Add product to cart
+                const product = { name: productName, price: parseFloat(productPrice) };
+                cart.push(product);
+                
+                // Update localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Update cart count in the navbar
+                updateCartCount();
+            });
+        });
+
+        // Function to update the cart count
+        function updateCartCount() {
+            const cartCount = cart.length;
+            document.querySelector('.cart').innerText = `🛒 Cart (${cartCount})`;
+        }
+
+        // Update cart count on page load
+        updateCartCount();
+    </script>
+</body>
+</html>

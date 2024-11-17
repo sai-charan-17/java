@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Dashboard</title>
+  
+</head>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg);
+  }
+  
+  .dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .card {
+    margin-top: 25%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 25%;
+    background-color: #42523393;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card h3 {
+    margin-bottom: 10px;
+    color: rgb(255, 255, 255);
+  }
+  
+  .card p {
+    font-size: 24px;
+    color: #16a085;
+  }
+  
+   
+</style>
+<body>
+ 
+      <div class="dashboard-cards">
+        <div class="card">
+          <h3>Shopping</h3>
+          <a href="shopping website/shopping main.html"><img src="https://img.freepik.com/premium-photo/shopping-cart-sale-black-background-copy-space-symbol-decoration-ornament-cyber-monday-black-friday-sale-50-fifty-percent-offer-discount-business-online-shopping-promotion-commercial-store-retail_178037-1094.jpg" height="150px" width="100%"></a>
+        </div>
+        <div class="card">
+          <h3>Banking</h3>
+          <a href="bank website/loging page.html"><img src="https://img.freepik.com/premium-photo/stack-black-money-coin-banking-currency-business-finance-cash-dollar-treasure-earnings-financial-profit-market-investment-stock-exchange-dark-3d-background-with-success-economy-income_79161-2032.jpg" height="150px" width="100%"></a>
+        </div>
+        <div class="card">
+          <h3>API Calling</h3>
+          <a href="API/fectching.html"><img src="https://miro.medium.com/v2/resize:fit:876/1*aTWmKvd8MjTaQyfQ7dmm7g.png" height="150px" width="100%"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
